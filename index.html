@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f4fd 0%, #f5f7fa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            padding: 40px 32px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 36px;
+        }
+        .payment-box {
+            background: #f9fafb;
+            border-radius: 14px;
+            padding: 22px 20px;
+            margin-bottom: 18px;
+            border: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+        .payment-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .easypaisa {
+            border-left: 5px solid #00a651;
+        }
+        .jazzcash {
+            border-left: 5px solid #8b1d8b;
+        }
+        .label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .easypaisa .label { color: #00a651; }
+        .jazzcash .label { color: #8b1d8b; }
+        .number {
+            font-size: 26px;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            user-select: all;
+        }
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 1.5px solid #e5e7eb;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+        }
+        .copy-btn:active {
+            transform: scale(0.97);
+        }
+        .copied {
+            background: #10b981 !important;
+            color: white !important;
+            border-color: #10b981 !important;
+        }
+        .footer {
+            margin-top: 28px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Payment Details</h1>
+        <p class="subtitle">Secure & Fast Transfer</p>
+
+        <!-- Easypaisa -->
+        <div class="payment-box easypaisa">
+            <div class="label">Easypaisa</div>
+            <div class="number" id="easypaisa">03295445165</div>
+            <button class="copy-btn" onclick="copyNumber('easypaisa', this)">
+                <span>Copy Number</span>
+            </button>
+        </div>
+
+        <!-- JazzCash -->
+        <div class="payment-box jazzcash">
+            <div class="label">JazzCash</div>
+            <div class="number" id="jazzcash">03295445165</div>
+            <button class="copy-btn" onclick="copyNumber('jazzcash', this)">
+                <span>Copy Number</span>
+            </button>
+        </div>
+
+        <div class="footer">Click the button to copy • Instant transfer</div>
+    </div>
+
+    <script>
+        function copyNumber(id, btn) {
+            const number = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(number).then(() => {
+                const original = btn.innerHTML;
+                btn.innerHTML = '<span>Copied!</span>';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
